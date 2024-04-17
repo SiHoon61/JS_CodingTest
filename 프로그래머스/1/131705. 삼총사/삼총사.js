@@ -13,10 +13,3 @@ function solution(number) {
     }
     return answer;
 }
-
-012
-013
-014
-023
-024
-034
