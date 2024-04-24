@@ -2,13 +2,6 @@ function solution(numbers, hand) {
     var answer = [];
     let left = '147';
     let right = '369';
-    let new_hand;
-    if(hand === 'right'){
-        new_hand = 'R';
-    }
-    else if(hand === 'left'){
-        new_hand = 'L';
-    }
     let 배열 = [[1, 3], [0, 0], [1, 0], [2, 0], [0, 1], [1, 1], [2, 1], [0, 2], [1, 2], [2, 2], [0, 3], [2, 3]];
     let 왼손위치 = 배열[10];
     let 오른손위치 = 배열[11];
