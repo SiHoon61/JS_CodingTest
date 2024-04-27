@@ -1,25 +1,55 @@
 function solution(n, lost, reserve) {
-    const students = {};
-    let answer = 0;
-    for(let i = 1; i <= n; i++){
-        students[i] = 1;
+    var answer = 0;
+    let index = 0;
+    for(i = 0 ; i < lost.length ; i++) {
+        index = reserve.indexOf(lost[i]);
+        if(index != -1){
+            reserve.splice(index, 1);
+            lost[i] = -10;
+        }
     }
-    lost.forEach(number => students[number] -= 1);
-    reserve.forEach(number => students[number] += 1);
+    let next_index = 0;
+    for(i = 0 ; i < reserve.length ; i++) {
+        index = lost.indexOf(reserve[i] - 1);
+        next_index = lost.indexOf(reserve[i] + 1)
+        if((lost[next_index] - 2) != lost[index]){
+            if(index != -1){
+                lost.splice(index, 1);
+                reserve[i] = NaN;
+            }
+        }
+    }
 
-    for(let i = 1; i <= n; i++){
-        if(students[i] === 2 && students[i-1] === 0){
-                students[i-1]++;
-                students[i]--;
-        } else if(students[i] === 2 && students[i+1] === 0){
-                students[i+1]++;
-                students[i]--;
+    for(i = (reserve.length - 1) ; i >= 0 ; i--) {
+        index = lost.indexOf(reserve[i] + 1);
+        next_index = lost.indexOf(reserve[i] - 1)
+        if((lost[next_index] + 2) != lost[index]){
+            if(index != -1){
+                lost.splice(index, 1);
+                reserve[i] = NaN;
+            }
         }
     }
-    for(let key in students){
-        if(students[key] >= 1){
-            answer++;
+
+    for(i = 0 ; i < reserve.length ; i++) {
+        index = lost.indexOf(reserve[i] - 1);
+        if(index != -1){
+            lost.splice(index, 1);
+            reserve[i] = NaN;
         }
     }
-    return answer;
+
+    for(i = (reserve.length - 1) ; i >= 0 ; i--) {
+        index = lost.indexOf(reserve[i] + 1);
+        if(index != -1){
+            lost.splice(index, 1);
+             reserve[i] = NaN;
+        }
+    }
+    for(i = 0 ; i < lost.length ; i++) {
+        if(lost[i] != -10){
+            n--;
+        }
+    }
+    return n;
 }
