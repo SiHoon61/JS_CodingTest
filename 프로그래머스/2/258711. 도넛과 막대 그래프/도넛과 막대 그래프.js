@@ -3,36 +3,18 @@ function solution(edges) {
     let 보냄 = [];
     let arr = [];
     for(i = 0 ; i < edges.length ; i++){
-        let [from, to] = edges[i];
-        
-        arr[edges[i][0]] = edges[i][1];
-        
-        
-        if(보냄[from] === undefined) {
-            보냄[from] = [to];
+        if(보냄[edges[i][0]] === undefined){
+            보냄[edges[i][0]] = [edges[i][1]];
         }
         else {
-            보냄[from].push(to);
+            보냄[edges[i][0]].push(edges[i][1]);
         }
-        
-        if(받음[to] === undefined) {
-            받음[to] = [from];
+        if(받음[edges[i][1]] === undefined){
+            받음[edges[i][1]] = [edges[i][0]];
         }
         else {
-            받음[to].push(from);
+            받음[edges[i][1]].push(edges[i][0]);
         }
-        // if(보냄[edges[i][0]] === undefined){
-        //     보냄[edges[i][0]] = [edges[i][1]];
-        // }
-        // else {
-        //     보냄[edges[i][0]].push(edges[i][1]);
-        // }
-        // if(받음[edges[i][1]] === undefined){
-        //     받음[edges[i][1]] = [edges[i][0]];
-        // }
-        // else {
-        //     받음[edges[i][1]].push(edges[i][0]);
-        // }
     }
     console.log('받음', 받음);
     console.log('보냄', 보냄);
